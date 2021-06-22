@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MyBatisCodeHelperDatasource">
+    <option name="projectProfile">
+      <ProjectProfile>
+        <option name="generateService" value="true" />
+        <option name="generateServiceInterface" value="true" />
+        <option name="javaMapperPackage" value="com.yc137.mapper" />
+        <option name="javaMapperPath" value="$PROJECT_DIR$/src/main/java" />
+        <option name="javaModelPackage" value="com.yc137.domain" />
+        <option name="javaModelPath" value="$PROJECT_DIR$/src/main/java" />
+        <option name="lastDatabaseCrudChooseModuleName" value="SSM_CRM_DEMO" />
+        <option name="moduleNameToPackageAndPathMap">
+          <map>
+            <entry key="SSM_CRM_DEMO">
+              <value>
+                <UserPackageAndPathInfoByModule>
+                  <option name="javaMapperPackage" value="com.yc137.mapper" />
+                  <option name="javaMapperPath" value="$PROJECT_DIR$/src/main/java" />
+                  <option name="javaModelPacakge" value="com.yc137.domain" />
+                  <option name="javaModelPath" value="$PROJECT_DIR$/src/main/java" />
+                  <option name="javaServiceInterfacePackage" value="com.yc137.service" />
+                  <option name="javaServiceInterfacePath" value="$PROJECT_DIR$/src/main/java" />
+                  <option name="javaServicePackage" value="com.yc137.service.impl" />
+                  <option name="javaServicePath" value="$PROJECT_DIR$/src/main/java" />
+                  <option name="xmlPackage" value="mapper" />
+                  <option name="xmlPath" value="$PROJECT_DIR$/src/main/resources" />
+                </UserPackageAndPathInfoByModule>
+              </value>
+            </entry>
+          </map>
+        </option>
+        <option name="tableGenerateConfigs">
+          <map>
+            <entry key="crm:company_customer">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="RID" />
+                  <option name="javaModelName" value="CompanyCustomer" />
+                  <option name="moduleName" value="SSM_CRM_DEMO" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="crm:company_customer_accessories">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="RID" />
+                  <option name="javaModelName" value="CompanyCustomerAccessories" />
+                  <option name="moduleName" value="SSM_CRM_DEMO" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="crm:contract">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="RID" />
+                  <option name="javaModelName" value="Contract" />
+                  <option name="moduleName" value="SSM_CRM_DEMO" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="crm:contract_details">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="RID" />
+                  <option name="javaModelName" value="ContractDetails" />
+                  <option name="moduleName" value="SSM_CRM_DEMO" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="crm:contract_reject">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="RID" />
+                  <option name="javaModelName" value="ContractReject" />
+                  <option name="moduleName" value="SSM_CRM_DEMO" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="crm:customer_contract_accessories">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="RID" />
+                  <option name="javaModelName" value="CustomerContractAccessories" />
+                  <option name="moduleName" value="SSM_CRM_DEMO" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="crm:follows_record">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="RID" />
+                  <option name="javaModelName" value="FollowsRecord" />
+                  <option name="moduleName" value="SSM_CRM_DEMO" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="crm:goods">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="RID" />
+                  <option name="javaModelName" value="Goods" />
+                  <option name="moduleName" value="SSM_CRM_DEMO" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="crm:order_process">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="RID" />
+                  <option name="javaModelName" value="OrderProcess" />
+                  <option name="moduleName" value="SSM_CRM_DEMO" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="crm:potential_customer">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="RID" />
+                  <option name="javaModelName" value="PotentialCustomer" />
+                  <option name="moduleName" value="SSM_CRM_DEMO" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="crm:t_authority">
+              <value>
+                <TableGenerateConfig>
+                  <option name="columnOverrideList">
+                    <list>
+                      <MyColumnOverride>
+                        <option name="columnName" value="MENU_TYPE" />
+                        <option name="javaType" value="java.lang.Integer" />
+                      </MyColumnOverride>
+                    </list>
+                  </option>
+                  <option name="javaModelName" value="TAuthority" />
+                  <option name="moduleName" value="SSM_CRM_DEMO" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="crm:t_common_type">
+              <value>
+                <TableGenerateConfig>
+                  <option name="columnOverrideList">
+                    <list>
+                      <MyColumnOverride>
+                        <option name="columnName" value="TYPE_KEY" />
+                        <option name="javaType" value="java.lang.Integer" />
+                      </MyColumnOverride>
+                      <MyColumnOverride>
+                        <option name="columnName" value="ENABLE" />
+                        <option name="javaType" value="java.lang.Integer" />
+                      </MyColumnOverride>
+                    </list>
+                  </option>
+                  <option name="generatedKey" value="ID" />
+                  <option name="javaModelName" value="TCommonType" />
+                  <option name="moduleName" value="SSM_CRM_DEMO" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="crm:t_common_type_group">
+              <value>
+                <TableGenerateConfig>
+                  <option name="columnOverrideList">
+                    <list>
+                      <MyColumnOverride>
+                        <option name="columnName" value="ENABLE" />
+                        <option name="javaType" value="java.lang.Integer" />
+                      </MyColumnOverride>
+                    </list>
+                  </option>
+                  <option name="generatedKey" value="ID" />
+                  <option name="javaModelName" value="TCommonTypeGroup" />
+                  <option name="moduleName" value="SSM_CRM_DEMO" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="crm:t_role">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="ID" />
+                  <option name="javaModelName" value="TRole" />
+                  <option name="moduleName" value="SSM_CRM_DEMO" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="crm:t_role_authority">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="ID" />
+                  <option name="javaModelName" value="TRoleAuthority" />
+                  <option name="moduleName" value="SSM_CRM_DEMO" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="crm:t_user">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="RID" />
+                  <option name="javaModelName" value="TUser" />
+                  <option name="moduleName" value="SSM_CRM_DEMO" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="crm:t_user_role">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="ID" />
+                  <option name="javaModelName" value="TUserRole" />
+                  <option name="moduleName" value="SSM_CRM_DEMO" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+          </map>
+        </option>
+        <option name="xmlMapperPackage" value="mapper" />
+        <option name="xmlMapperPath" value="$PROJECT_DIR$/src/main/resources" />
+      </ProjectProfile>
+    </option>
+  </component>
+</project>

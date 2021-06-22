@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc137.mapper.CompanyCustomerAccessoriesMapper">
+  <resultMap id="BaseResultMap" type="com.yc137.domain.CompanyCustomerAccessories">
+    <!--@mbg.generated-->
+    <!--@Table company_customer_accessories-->
+    <id column="RID" jdbcType="INTEGER" property="rid" />
+    <result column="CUSTOMER_ID" jdbcType="INTEGER" property="customerId" />
+    <result column="ACCESSORIES_NAME" jdbcType="VARCHAR" property="accessoriesName" />
+    <result column="ACCESSORIES_TIME" jdbcType="TIMESTAMP" property="accessoriesTime" />
+    <result column="save_path" jdbcType="VARCHAR" property="savePath"/>
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    RID, CUSTOMER_ID, ACCESSORIES_NAME, ACCESSORIES_TIME,save_path
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from company_customer_accessories
+    where CUSTOMER_ID = #{rid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from company_customer_accessories
+    where RID = #{rid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="RID" keyProperty="rid" parameterType="com.yc137.domain.CompanyCustomerAccessories" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into company_customer_accessories (CUSTOMER_ID, ACCESSORIES_NAME, ACCESSORIES_TIME,save_path
+      )
+    values (#{customerId,jdbcType=INTEGER}, #{accessoriesName,jdbcType=VARCHAR}, #{accessoriesTime,jdbcType=TIMESTAMP},#{savePath,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="RID" keyProperty="rid" parameterType="com.yc137.domain.CompanyCustomerAccessories" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into company_customer_accessories
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="customerId != null">
+        CUSTOMER_ID,
+      </if>
+      <if test="accessoriesName != null and accessoriesName != ''">
+        ACCESSORIES_NAME,
+      </if>
+      <if test="accessoriesTime != null">
+        ACCESSORIES_TIME,
+      </if>
+      <if test="savePath !=null">
+        save_path
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="customerId != null">
+        #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="accessoriesName != null and accessoriesName != ''">
+        #{accessoriesName,jdbcType=VARCHAR},
+      </if>
+      <if test="accessoriesTime != null">
+        #{accessoriesTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="savePath !=null">
+       #{savePath,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yc137.domain.CompanyCustomerAccessories">
+    <!--@mbg.generated-->
+    update company_customer_accessories
+    <set>
+      <if test="customerId != null">
+        CUSTOMER_ID = #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="accessoriesName != null and accessoriesName != ''">
+        ACCESSORIES_NAME = #{accessoriesName,jdbcType=VARCHAR},
+      </if>
+      <if test="accessoriesTime != null">
+        ACCESSORIES_TIME = #{accessoriesTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="savePath!=null">
+        save_path=#{savePath,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where RID = #{rid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yc137.domain.CompanyCustomerAccessories">
+    <!--@mbg.generated-->
+    update company_customer_accessories
+    set CUSTOMER_ID = #{customerId,jdbcType=INTEGER},
+      ACCESSORIES_NAME = #{accessoriesName,jdbcType=VARCHAR},
+      ACCESSORIES_TIME = #{accessoriesTime,jdbcType=TIMESTAMP},
+      save_path=#{savePath,jdbcType=VARCHAR}
+    where RID = #{rid,jdbcType=INTEGER}
+  </update>
+
+  <delete id="deleteByCustomerID">
+    delete from company_customer_accessories where CUSTOMER_ID=#{rid}
+  </delete>
+</mapper>

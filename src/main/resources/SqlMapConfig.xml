@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/crm?serverTimezone=GMT%2B8&amp;useUnicode=true&amp;characterEncoding=utf-8"/>
+                <property name="username" value="root"/>
+                <property name="password" value="root"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="mapper/TUserMapper.xml"/>
+        <mapper resource="mapper/TRoleMapper.xml"/>
+        <mapper resource="mapper/TUserRoleMapper.xml"/>
+        <mapper resource="mapper/CompanyCustomerAccessoriesMapper.xml"/>
+        <mapper resource="mapper/CompanyCustomerMapper.xml"/>
+        <mapper resource="mapper/ContractDetailsMapper.xml"/>
+        <mapper resource="mapper/ContractMapper.xml"/>
+        <mapper resource="mapper/ContractRejectMapper.xml"/>
+        <mapper resource="mapper/CustomerContractAccessoriesMapper.xml"/>
+        <mapper resource="mapper/DictionaryGroupMapper.xml"/>
+        <mapper resource="mapper/DigitalDictionaryMapper.xml"/>
+        <mapper resource="mapper/FollowsRecordMapper.xml"/>
+        <mapper resource="mapper/GoodsMapper.xml"/>
+        <mapper resource="mapper/HibernateSequenceMapper.xml"/>
+        <mapper resource="mapper/OrderProcessMapper.xml"/>
+        <mapper resource="mapper/PotentialCustomerMapper.xml"/>
+        <mapper resource="mapper/TAuthorityMapper.xml"/>
+        <mapper resource="mapper/TCommonTypeGroupMapper.xml"/>
+        <mapper resource="mapper/TCommonTypeMapper.xml"/>
+        <mapper resource="mapper/TRoleAuthorityMapper.xml"/>
+    </mappers>
+</configuration>

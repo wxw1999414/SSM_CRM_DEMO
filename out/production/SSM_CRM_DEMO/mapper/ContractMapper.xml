@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc137.mapper.ContractMapper">
+  <resultMap id="BaseResultMap" type="com.yc137.domain.Contract">
+    <!--@mbg.generated-->
+    <!--@Table contract-->
+    <id column="RID" jdbcType="INTEGER" property="rid" />
+    <result column="number" jdbcType="VARCHAR" property="number" />
+    <result column="CUSTOMER_ID" jdbcType="INTEGER" property="customerId" />
+    <result column="CONTENT" jdbcType="VARCHAR" property="content" />
+    <result column="MONEY" jdbcType="FLOAT" property="money" />
+    <result column="STAGES" jdbcType="VARCHAR" property="stages" />
+    <result column="STATE" jdbcType="VARCHAR" property="state" />
+    <result column="HT_ENDTIME" jdbcType="INTEGER" property="htEndtime" />
+    <result column="DATE" jdbcType="TIMESTAMP" property="date" />
+    <result column="REMARKS" jdbcType="LONGVARCHAR" property="remarks" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    RID, `number`, CUSTOMER_ID, CONTENT, MONEY, STAGES, `STATE`, HT_ENDTIME, `DATE`, 
+    REMARKS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from contract
+    where RID = #{rid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from contract
+    where RID = #{rid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="RID" keyProperty="rid" parameterType="com.yc137.domain.Contract" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into contract (`number`, CUSTOMER_ID, CONTENT, 
+      MONEY, STAGES, `STATE`, 
+      HT_ENDTIME, `DATE`, REMARKS
+      )
+    values (#{number,jdbcType=VARCHAR}, #{customerId,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, 
+      #{money,jdbcType=FLOAT}, #{stages,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, 
+      #{htEndtime,jdbcType=INTEGER}, #{date,jdbcType=TIMESTAMP}, #{remarks,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="RID" keyProperty="rid" parameterType="com.yc137.domain.Contract" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into contract
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="number != null and number != ''">
+        `number`,
+      </if>
+      <if test="customerId != null">
+        CUSTOMER_ID,
+      </if>
+      <if test="content != null and content != ''">
+        CONTENT,
+      </if>
+      <if test="money != null">
+        MONEY,
+      </if>
+      <if test="stages != null and stages != ''">
+        STAGES,
+      </if>
+      <if test="state != null and state != ''">
+        `STATE`,
+      </if>
+      <if test="htEndtime != null">
+        HT_ENDTIME,
+      </if>
+      <if test="date != null">
+        `DATE`,
+      </if>
+      <if test="remarks != null and remarks != ''">
+        REMARKS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="number != null and number != ''">
+        #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null and content != ''">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null">
+        #{money,jdbcType=FLOAT},
+      </if>
+      <if test="stages != null and stages != ''">
+        #{stages,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null and state != ''">
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="htEndtime != null">
+        #{htEndtime,jdbcType=INTEGER},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null and remarks != ''">
+        #{remarks,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yc137.domain.Contract">
+    <!--@mbg.generated-->
+    update contract
+    <set>
+      <if test="number != null and number != ''">
+        `number` = #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        CUSTOMER_ID = #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null and content != ''">
+        CONTENT = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null">
+        MONEY = #{money,jdbcType=FLOAT},
+      </if>
+      <if test="stages != null and stages != ''">
+        STAGES = #{stages,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null and state != ''">
+        `STATE` = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="htEndtime != null">
+        HT_ENDTIME = #{htEndtime,jdbcType=INTEGER},
+      </if>
+      <if test="date != null">
+        `DATE` = #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null and remarks != ''">
+        REMARKS = #{remarks,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where RID = #{rid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yc137.domain.Contract">
+    <!--@mbg.generated-->
+    update contract
+    set `number` = #{number,jdbcType=VARCHAR},
+      CUSTOMER_ID = #{customerId,jdbcType=INTEGER},
+      CONTENT = #{content,jdbcType=VARCHAR},
+      MONEY = #{money,jdbcType=FLOAT},
+      STAGES = #{stages,jdbcType=VARCHAR},
+      `STATE` = #{state,jdbcType=VARCHAR},
+      HT_ENDTIME = #{htEndtime,jdbcType=INTEGER},
+      `DATE` = #{date,jdbcType=TIMESTAMP},
+      REMARKS = #{remarks,jdbcType=LONGVARCHAR}
+    where RID = #{rid,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectAll" resultType="java.util.Map" parameterType="com.yc137.domain.Contract">
+    select * from contract left join company_customer on contract.CUSTOMER_ID=company_customer.rid where 1=1
+    <if test="number != null and number != ''">
+     and number = #{number}
+    </if>
+    <if test="customerId != null">
+     and CUSTOMER_ID = #{customerId,jdbcType=INTEGER}
+    </if>
+    <if test="content != null and content != ''">
+     and CONTENT = #{content,jdbcType=VARCHAR}
+    </if>
+    <if test="money != null">
+      and MONEY = #{money,jdbcType=FLOAT}
+    </if>
+    <if test="stages != null and stages != ''">
+      and STAGES = #{stages,jdbcType=VARCHAR}
+    </if>
+    <if test="state != null and state != ''">
+      and `STATE` = #{state,jdbcType=VARCHAR}
+    </if>
+    <if test="htEndtime != null">
+      and HT_ENDTIME = #{htEndtime,jdbcType=INTEGER}
+    </if>
+    <if test="date != null">
+      and `DATE` = #{date,jdbcType=TIMESTAMP}
+    </if>
+    <if test="remarks != null and remarks != ''">
+      and REMARKS = #{remarks,jdbcType=LONGVARCHAR}
+    </if>
+
+  </select>
+
+  <select id="selectById" resultType="java.util.Map">
+    select * from contract left join company_customer on contract.CUSTOMER_ID=company_customer.rid where contract.RID=#{id}
+  </select>
+
+  <update id="updateById">
+    update contract set state=#{param2},REMARKS=#{param3} where RID=#{param1}
+  </update>
+</mapper>

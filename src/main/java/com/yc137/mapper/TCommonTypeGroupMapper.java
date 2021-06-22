@@ -1,0 +1,17 @@
+package com.yc137.mapper;
+
+import com.yc137.domain.TCommonTypeGroup;
+
+public interface TCommonTypeGroupMapper {
+    int deleteByPrimaryKey(Long id);
+
+    int insert(TCommonTypeGroup record);
+
+    int insertSelective(TCommonTypeGroup record);
+
+    TCommonTypeGroup selectByPrimaryKey(Long id);
+
+    int updateByPrimaryKeySelective(TCommonTypeGroup record);
+
+    int updateByPrimaryKey(TCommonTypeGroup record);
+}

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc137.mapper.ContractDetailsMapper">
+  <resultMap id="BaseResultMap" type="com.yc137.domain.ContractDetails">
+    <!--@mbg.generated-->
+    <!--@Table contract_details-->
+    <id column="RID" jdbcType="INTEGER" property="rid" />
+    <result column="CONTRACT_NUMBER" jdbcType="VARCHAR" property="contractNumber" />
+    <result column="STATEONE" jdbcType="VARCHAR" property="stateone" />
+    <result column="STATETWO" jdbcType="VARCHAR" property="statetwo" />
+    <result column="STATETHREE" jdbcType="VARCHAR" property="statethree" />
+    <result column="DETAILONE" jdbcType="VARCHAR" property="detailone" />
+    <result column="DETAILTWO" jdbcType="VARCHAR" property="detailtwo" />
+    <result column="DETAILTHREE" jdbcType="VARCHAR" property="detailthree" />
+    <result column="TIMEONE" jdbcType="DATE" property="timeone" />
+    <result column="TIMETWO" jdbcType="DATE" property="timetwo" />
+    <result column="TIMETHREE" jdbcType="DATE" property="timethree" />
+    <result column="FOLLOW_PERSON" jdbcType="VARCHAR" property="followPerson" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    RID, CONTRACT_NUMBER, STATEONE, STATETWO, STATETHREE, DETAILONE, DETAILTWO, DETAILTHREE, 
+    TIMEONE, TIMETWO, TIMETHREE, FOLLOW_PERSON
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from contract_details
+    where RID = #{rid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from contract_details
+    where RID = #{rid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="RID" keyProperty="rid" parameterType="com.yc137.domain.ContractDetails" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into contract_details (CONTRACT_NUMBER, STATEONE, STATETWO, 
+      STATETHREE, DETAILONE, DETAILTWO, 
+      DETAILTHREE, TIMEONE, TIMETWO, 
+      TIMETHREE, FOLLOW_PERSON)
+    values (#{contractNumber,jdbcType=VARCHAR}, #{stateone,jdbcType=VARCHAR}, #{statetwo,jdbcType=VARCHAR}, 
+      #{statethree,jdbcType=VARCHAR}, #{detailone,jdbcType=VARCHAR}, #{detailtwo,jdbcType=VARCHAR}, 
+      #{detailthree,jdbcType=VARCHAR}, #{timeone,jdbcType=DATE}, #{timetwo,jdbcType=DATE}, 
+      #{timethree,jdbcType=DATE}, #{followPerson,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="RID" keyProperty="rid" parameterType="com.yc137.domain.ContractDetails" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into contract_details
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="contractNumber != null and contractNumber != ''">
+        CONTRACT_NUMBER,
+      </if>
+      <if test="stateone != null and stateone != ''">
+        STATEONE,
+      </if>
+      <if test="statetwo != null and statetwo != ''">
+        STATETWO,
+      </if>
+      <if test="statethree != null and statethree != ''">
+        STATETHREE,
+      </if>
+      <if test="detailone != null and detailone != ''">
+        DETAILONE,
+      </if>
+      <if test="detailtwo != null and detailtwo != ''">
+        DETAILTWO,
+      </if>
+      <if test="detailthree != null and detailthree != ''">
+        DETAILTHREE,
+      </if>
+      <if test="timeone != null">
+        TIMEONE,
+      </if>
+      <if test="timetwo != null">
+        TIMETWO,
+      </if>
+      <if test="timethree != null">
+        TIMETHREE,
+      </if>
+      <if test="followPerson != null and followPerson != ''">
+        FOLLOW_PERSON,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="contractNumber != null and contractNumber != ''">
+        #{contractNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="stateone != null and stateone != ''">
+        #{stateone,jdbcType=VARCHAR},
+      </if>
+      <if test="statetwo != null and statetwo != ''">
+        #{statetwo,jdbcType=VARCHAR},
+      </if>
+      <if test="statethree != null and statethree != ''">
+        #{statethree,jdbcType=VARCHAR},
+      </if>
+      <if test="detailone != null and detailone != ''">
+        #{detailone,jdbcType=VARCHAR},
+      </if>
+      <if test="detailtwo != null and detailtwo != ''">
+        #{detailtwo,jdbcType=VARCHAR},
+      </if>
+      <if test="detailthree != null and detailthree != ''">
+        #{detailthree,jdbcType=VARCHAR},
+      </if>
+      <if test="timeone != null">
+        #{timeone,jdbcType=DATE},
+      </if>
+      <if test="timetwo != null">
+        #{timetwo,jdbcType=DATE},
+      </if>
+      <if test="timethree != null">
+        #{timethree,jdbcType=DATE},
+      </if>
+      <if test="followPerson != null and followPerson != ''">
+        #{followPerson,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yc137.domain.ContractDetails">
+    <!--@mbg.generated-->
+    update contract_details
+    <set>
+      <if test="contractNumber != null and contractNumber != ''">
+        CONTRACT_NUMBER = #{contractNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="stateone != null and stateone != ''">
+        STATEONE = #{stateone,jdbcType=VARCHAR},
+      </if>
+      <if test="statetwo != null and statetwo != ''">
+        STATETWO = #{statetwo,jdbcType=VARCHAR},
+      </if>
+      <if test="statethree != null and statethree != ''">
+        STATETHREE = #{statethree,jdbcType=VARCHAR},
+      </if>
+      <if test="detailone != null and detailone != ''">
+        DETAILONE = #{detailone,jdbcType=VARCHAR},
+      </if>
+      <if test="detailtwo != null and detailtwo != ''">
+        DETAILTWO = #{detailtwo,jdbcType=VARCHAR},
+      </if>
+      <if test="detailthree != null and detailthree != ''">
+        DETAILTHREE = #{detailthree,jdbcType=VARCHAR},
+      </if>
+      <if test="timeone != null">
+        TIMEONE = #{timeone,jdbcType=DATE},
+      </if>
+      <if test="timetwo != null">
+        TIMETWO = #{timetwo,jdbcType=DATE},
+      </if>
+      <if test="timethree != null">
+        TIMETHREE = #{timethree,jdbcType=DATE},
+      </if>
+      <if test="followPerson != null and followPerson != ''">
+        FOLLOW_PERSON = #{followPerson,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where RID = #{rid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yc137.domain.ContractDetails">
+    <!--@mbg.generated-->
+    update contract_details
+    set CONTRACT_NUMBER = #{contractNumber,jdbcType=VARCHAR},
+      STATEONE = #{stateone,jdbcType=VARCHAR},
+      STATETWO = #{statetwo,jdbcType=VARCHAR},
+      STATETHREE = #{statethree,jdbcType=VARCHAR},
+      DETAILONE = #{detailone,jdbcType=VARCHAR},
+      DETAILTWO = #{detailtwo,jdbcType=VARCHAR},
+      DETAILTHREE = #{detailthree,jdbcType=VARCHAR},
+      TIMEONE = #{timeone,jdbcType=DATE},
+      TIMETWO = #{timetwo,jdbcType=DATE},
+      TIMETHREE = #{timethree,jdbcType=DATE},
+      FOLLOW_PERSON = #{followPerson,jdbcType=VARCHAR}
+    where RID = #{rid,jdbcType=INTEGER}
+  </update>
+</mapper>

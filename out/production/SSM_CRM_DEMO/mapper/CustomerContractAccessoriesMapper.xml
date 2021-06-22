@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc137.mapper.CustomerContractAccessoriesMapper">
+  <resultMap id="BaseResultMap" type="com.yc137.domain.CustomerContractAccessories">
+    <!--@mbg.generated-->
+    <!--@Table customer_contract_accessories-->
+    <id column="RID" jdbcType="INTEGER" property="rid" />
+    <result column="CONTRACT_ID" jdbcType="INTEGER" property="contractId" />
+    <result column="ACCESSORIES_NAME" jdbcType="VARCHAR" property="accessoriesName" />
+    <result column="ACCESSORIES_TIME" jdbcType="TIMESTAMP" property="accessoriesTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    RID, CONTRACT_ID, ACCESSORIES_NAME, ACCESSORIES_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from customer_contract_accessories
+    where RID = #{rid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from customer_contract_accessories
+    where RID = #{rid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="RID" keyProperty="rid" parameterType="com.yc137.domain.CustomerContractAccessories" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into customer_contract_accessories (CONTRACT_ID, ACCESSORIES_NAME, ACCESSORIES_TIME
+      )
+    values (#{contractId,jdbcType=INTEGER}, #{accessoriesName,jdbcType=VARCHAR}, #{accessoriesTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="RID" keyProperty="rid" parameterType="com.yc137.domain.CustomerContractAccessories" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into customer_contract_accessories
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="contractId != null">
+        CONTRACT_ID,
+      </if>
+      <if test="accessoriesName != null and accessoriesName != ''">
+        ACCESSORIES_NAME,
+      </if>
+      <if test="accessoriesTime != null">
+        ACCESSORIES_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="contractId != null">
+        #{contractId,jdbcType=INTEGER},
+      </if>
+      <if test="accessoriesName != null and accessoriesName != ''">
+        #{accessoriesName,jdbcType=VARCHAR},
+      </if>
+      <if test="accessoriesTime != null">
+        #{accessoriesTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yc137.domain.CustomerContractAccessories">
+    <!--@mbg.generated-->
+    update customer_contract_accessories
+    <set>
+      <if test="contractId != null">
+        CONTRACT_ID = #{contractId,jdbcType=INTEGER},
+      </if>
+      <if test="accessoriesName != null and accessoriesName != ''">
+        ACCESSORIES_NAME = #{accessoriesName,jdbcType=VARCHAR},
+      </if>
+      <if test="accessoriesTime != null">
+        ACCESSORIES_TIME = #{accessoriesTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where RID = #{rid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yc137.domain.CustomerContractAccessories">
+    <!--@mbg.generated-->
+    update customer_contract_accessories
+    set CONTRACT_ID = #{contractId,jdbcType=INTEGER},
+      ACCESSORIES_NAME = #{accessoriesName,jdbcType=VARCHAR},
+      ACCESSORIES_TIME = #{accessoriesTime,jdbcType=TIMESTAMP}
+    where RID = #{rid,jdbcType=INTEGER}
+  </update>
+</mapper>

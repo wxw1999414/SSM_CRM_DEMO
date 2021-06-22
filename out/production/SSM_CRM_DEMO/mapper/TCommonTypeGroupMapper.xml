@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc137.mapper.TCommonTypeGroupMapper">
+  <resultMap id="BaseResultMap" type="com.yc137.domain.TCommonTypeGroup">
+    <!--@mbg.generated-->
+    <!--@Table t_common_type_group-->
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="GROUP_NAME" jdbcType="VARCHAR" property="groupName" />
+    <result column="GROUP_LABEL" jdbcType="VARCHAR" property="groupLabel" />
+    <result column="ENABLE" jdbcType="SMALLINT" property="enable" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    ID, GROUP_NAME, GROUP_LABEL, `ENABLE`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from t_common_type_group
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from t_common_type_group
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.yc137.domain.TCommonTypeGroup" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into t_common_type_group (GROUP_NAME, GROUP_LABEL, `ENABLE`
+      )
+    values (#{groupName,jdbcType=VARCHAR}, #{groupLabel,jdbcType=VARCHAR}, #{enable,jdbcType=SMALLINT}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="com.yc137.domain.TCommonTypeGroup" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into t_common_type_group
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="groupName != null and groupName != ''">
+        GROUP_NAME,
+      </if>
+      <if test="groupLabel != null and groupLabel != ''">
+        GROUP_LABEL,
+      </if>
+      <if test="enable != null">
+        `ENABLE`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="groupName != null and groupName != ''">
+        #{groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="groupLabel != null and groupLabel != ''">
+        #{groupLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="enable != null">
+        #{enable,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yc137.domain.TCommonTypeGroup">
+    <!--@mbg.generated-->
+    update t_common_type_group
+    <set>
+      <if test="groupName != null and groupName != ''">
+        GROUP_NAME = #{groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="groupLabel != null and groupLabel != ''">
+        GROUP_LABEL = #{groupLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="enable != null">
+        `ENABLE` = #{enable,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yc137.domain.TCommonTypeGroup">
+    <!--@mbg.generated-->
+    update t_common_type_group
+    set GROUP_NAME = #{groupName,jdbcType=VARCHAR},
+      GROUP_LABEL = #{groupLabel,jdbcType=VARCHAR},
+      `ENABLE` = #{enable,jdbcType=SMALLINT}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

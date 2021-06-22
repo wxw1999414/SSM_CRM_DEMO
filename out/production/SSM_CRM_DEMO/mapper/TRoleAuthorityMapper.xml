@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc137.mapper.TRoleAuthorityMapper">
+  <resultMap id="BaseResultMap" type="com.yc137.domain.TRoleAuthority">
+    <!--@mbg.generated-->
+    <!--@Table t_role_authority-->
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="ROLE_ID" jdbcType="BIGINT" property="roleId" />
+    <result column="AUTHORITY_ID" jdbcType="BIGINT" property="authorityId" />
+  </resultMap>
+
+  <resultMap id="TAuthorityMap" type="com.yc137.domain.TAuthority">
+    <!--@mbg.generated-->
+    <!--@Table t_authority-->
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="IS_MENU" jdbcType="INTEGER" property="isMenu" />
+    <result column="PARENT_ID" jdbcType="BIGINT" property="parentId" />
+    <result column="MENU_TYPE" jdbcType="SMALLINT" property="menuType" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="URL" jdbcType="VARCHAR" property="url" />
+  </resultMap>
+
+
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    ID, ROLE_ID, AUTHORITY_ID
+  </sql>
+
+  <select id="selectRoleAuthById" parameterType="java.lang.Long" resultMap="TAuthorityMap">
+    select a.*
+    from t_role r left join t_role_authority ra on r.ID=ra.ROLE_ID
+    left join t_authority a on ra.AUTHORITY_ID=a.ID
+    where  r.ID=#{id}
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from t_role_authority
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from t_role_authority
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.yc137.domain.TRoleAuthority" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into t_role_authority (ROLE_ID, AUTHORITY_ID)
+    values (#{roleId,jdbcType=BIGINT}, #{authorityId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="com.yc137.domain.TRoleAuthority" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into t_role_authority
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        ROLE_ID,
+      </if>
+      <if test="authorityId != null">
+        AUTHORITY_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        #{roleId,jdbcType=BIGINT},
+      </if>
+      <if test="authorityId != null">
+        #{authorityId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yc137.domain.TRoleAuthority">
+    <!--@mbg.generated-->
+    update t_role_authority
+    <set>
+      <if test="roleId != null">
+        ROLE_ID = #{roleId,jdbcType=BIGINT},
+      </if>
+      <if test="authorityId != null">
+        AUTHORITY_ID = #{authorityId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yc137.domain.TRoleAuthority">
+    <!--@mbg.generated-->
+    update t_role_authority
+    set ROLE_ID = #{roleId,jdbcType=BIGINT},
+    AUTHORITY_ID = #{authorityId,jdbcType=BIGINT}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

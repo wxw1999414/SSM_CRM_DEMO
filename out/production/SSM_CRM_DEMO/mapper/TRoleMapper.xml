@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc137.mapper.TRoleMapper">
+  <resultMap id="BaseResultMap" type="com.yc137.domain.TRole">
+    <!--@mbg.generated-->
+    <!--@Table t_role-->
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+
+    <collection property="authList" ofType="com.yc137.domain.TAuthority" resultMap="TAuthorityMap"/>
+
+    <collection property="tUserList" ofType="com.yc137.domain.TUser" >
+      <id column="RID" jdbcType="INTEGER" property="rid" />
+      <result column="LOGIN_NAME" jdbcType="VARCHAR" property="loginName" />
+      <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+      <result column="U_NAME" jdbcType="VARCHAR" property="uName" />
+      <result column="U_POST" jdbcType="VARCHAR" property="uPost" />
+      <result column="U_PHONE" jdbcType="VARCHAR" property="uPhone" />
+      <result column="U_PARENT_ID" jdbcType="INTEGER" property="uParentId" />
+      <result column="U_STORAGE_ID" jdbcType="INTEGER" property="uStorageId" />
+      <result column="STATUS" jdbcType="INTEGER" property="status" />
+      <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+      <result column="U_REMARK" jdbcType="VARCHAR" property="uRemark" />
+    </collection>
+  </resultMap>
+
+  <resultMap id="TAuthorityMap" type="com.yc137.domain.TAuthority">
+    <!--@mbg.generated-->
+    <!--@Table t_authority-->
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="IS_MENU" jdbcType="INTEGER" property="isMenu" />
+    <result column="PARENT_ID" jdbcType="BIGINT" property="parentId" />
+    <result column="MENU_TYPE" jdbcType="SMALLINT" property="menuType" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="URL" jdbcType="VARCHAR" property="url" />
+  </resultMap>
+
+
+
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    ID, `NAME`
+  </sql>
+
+  <select id="selectRoleAuthById" parameterType="java.lang.Long" resultMap="TAuthorityMap">
+    select a.*
+    from t_role r left join t_role_authority ra on r.ID=ra.ROLE_ID
+    left join t_authority a on ra.AUTHORITY_ID=a.ID
+    where  r.ID=#{id}
+
+  </select>
+  <select id="selectByRole" parameterType="com.yc137.domain.TRole" resultMap="BaseResultMap">
+    select
+    u.*,r.ID,r.NAME
+    from t_user u , t_user_role ur ,t_role r
+    where u.RID=ur.USER_ID and
+    ur.ROLE_ID=r.ID and
+    r.ID = #{id,jdbcType=BIGINT}
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from t_role
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from t_role
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.yc137.domain.TRole" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into t_role (`NAME`)
+    values (#{name,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="com.yc137.domain.TRole" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into t_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        `NAME`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yc137.domain.TRole">
+    <!--@mbg.generated-->
+    update t_role
+    <set>
+      <if test="name != null">
+        `NAME` = #{name,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yc137.domain.TRole">
+    <!--@mbg.generated-->
+    update t_role
+    set `NAME` = #{name,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

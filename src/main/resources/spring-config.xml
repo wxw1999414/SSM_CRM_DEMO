@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="
+                    http://www.springframework.org/schema/context
+                    http://www.springframework.org/schema/context/spring-context.xsd
+                    http://www.springframework.org/schema/beans
+                    http://www.springframework.org/schema/beans/spring-beans.xsd
+                    http://www.springframework.org/schema/tx
+                    http://www.springframework.org/schema/tx/spring-tx.xsd
+                    http://www.springframework.org/schema/aop
+                    http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!--   bean definitions here
+       自动扫描web包 ,将带有注解的类纳入spring容器管理
+      Spring 容器初始化的时候，会扫描 com.yc137 下标有
+          (@Component,@Service,@Controller,@Repository) 注解的类,纳入spring容器管理-->
+    <context:component-scan base-package="com.yc137"/>
+
+
+    <!-- 阿里数据库连接池 -->
+    <bean id="druidDataSource" class="com.alibaba.druid.pool.DruidDataSource"
+          init-method="init" destroy-method="close">
+        <!-- 基本属性 url、user、password -->
+        <property name="url" value="jdbc:mysql://localhost:3306/crm?serverTimezone=GMT%2B8&amp;useUnicode=true&amp;characterEncoding=utf-8" />
+        <property name="username" value="root" />
+        <property name="password" value="root" />
+        <!-- 配置初始化大小、最小、最大 -->
+        <property name="initialSize" value="10" />
+        <property name="minIdle" value="50" />
+        <property name="maxActive" value="50" />
+        <!-- 配置获取连接等待超时的时间 -->
+        <property name="maxWait" value="60000" />
+        <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+        <property name="timeBetweenEvictionRunsMillis" value="60000" />
+        <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+        <property name="minEvictableIdleTimeMillis" value="300000" />
+
+        <property name="validationQuery" value="SELECT 'x'" />
+        <property name="testWhileIdle" value="true" />
+        <property name="testOnBorrow" value="false" />
+        <property name="testOnReturn" value="false" />
+        <!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+        <property name="poolPreparedStatements" value="false" />
+        <property name="maxPoolPreparedStatementPerConnectionSize"
+                  value="20" />
+        <!-- 配置监控统计拦截的filters -->
+        <property name="filters" value="stat" />
+    </bean>
+
+
+
+
+    <!-- 2) 获取 SqlSessionFactory 对象，并交由 spring 管理-->
+  <!--  <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        &lt;!&ndash; 注入连接池
+         给 sqlsessionFactory 的属性 dataSource 赋值
+            ref="引用该 spring容器 中的另一个 bean的id"
+        &ndash;&gt;
+        <property name="dataSource" ref="druidDataSource"/>
+        &lt;!&ndash; 注入 映射文件 mapper
+         给 sqlsessionFactory 的属性 mapperLocation 赋值
+           value="映射文件 XXXmapper.xml 的相对路径"
+          &ndash;&gt;
+        <property name="mapperLocations" value="mapper/*.xml"/>
+    </bean>-->
+
+    <!-- 3) 获取 SqlSession 对象，并交由 spring 管理  用SqlSessionTemplate得到的SqlSession可以不用我们自己操心事务的管理，以及关闭操作-->
+   <!-- <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        &lt;!&ndash; 给 SqlSessionTemplate 的构造函数赋值&ndash;&gt;
+        <constructor-arg index="0" ref="sqlSessionFactory" />
+    </bean>-->
+
+
+    <bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="configLocation"  value="classpath:SqlMapConfig.xml"/>
+        <property name="dataSource" ref="druidDataSource"></property>
+    </bean>
+
+
+    <!-- 4) 搜索有哪些 mapper 实现类，把mapper接口自动配置成 spring 中的bean -->
+    <bean id="scannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!-- name="basePackage":(起始)包名, 从这个包开始扫描-->
+        <property name="basePackage" value="com.yc137.mapper"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryBean" />
+    </bean>
+
+    <!-- 5）配置事务管理器
+            id="transactionManager" id名必须是transactionManager，
+        即因为mybatis底层用的是JDBC事务管理器，所以在这里依然配置JDBC事物管理
+        -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="druidDataSource"/>
+    </bean>
+
+    <!--事务配置-->
+   <!-- <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>-->
+    <!--启用事务配置[注解]-->
+    <tx:annotation-driven transaction-manager="transactionManager" />
+    <!--启用事务配置[xml]-->
+    <!--    <tx:advice id="transactionInterceptor" transaction-manager="transactionManager">
+            <tx:attributes>
+                <tx:method name="*" propagation="SUPPORTS" read-only="true"/>
+                <tx:method name="transfor*" propagation="REQUIRED" read-only="false" />
+                <tx:method name="update*" propagation="REQUIRED" read-only="false" />
+                <tx:method name="save*" propagation="REQUIRED" read-only="false" />
+                <tx:method name="add*" propagation="REQUIRED" read-only="false" />
+                <tx:method name="delete*" propagation="REQUIRED" read-only="false" />
+
+            </tx:attributes>
+        </tx:advice>
+        <aop:config proxy-target-class="true">
+            <aop:advisor advice-ref="transactionInterceptor" pointcut="execution(* com.yc137.service..*.*(..))"/>
+        </aop:config>-->
+    <!--分页设置-->
+    <bean id="factoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="druidDataSource"/>
+        <!--分页插件-->
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageInterceptor">
+                    <property name="properties" value="helperDialect=mysql"/>
+                </bean>
+            </array>
+        </property>
+    </bean>
+
+</beans>

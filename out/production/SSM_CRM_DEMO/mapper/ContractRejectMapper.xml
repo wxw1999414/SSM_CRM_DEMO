@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc137.mapper.ContractRejectMapper">
+  <resultMap id="BaseResultMap" type="com.yc137.domain.ContractReject">
+    <!--@mbg.generated-->
+    <!--@Table contract_reject-->
+    <id column="RID" jdbcType="INTEGER" property="rid" />
+    <result column="CONTRACT_NUMBER" jdbcType="VARCHAR" property="contractNumber" />
+    <result column="REASON" jdbcType="VARCHAR" property="reason" />
+    <result column="TIME" jdbcType="TIMESTAMP" property="time" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    RID, CONTRACT_NUMBER, REASON, `TIME`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from contract_reject
+    where RID = #{rid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from contract_reject
+    where RID = #{rid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="RID" keyProperty="rid" parameterType="com.yc137.domain.ContractReject" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into contract_reject (CONTRACT_NUMBER, REASON, `TIME`
+      )
+    values (#{contractNumber,jdbcType=VARCHAR}, #{reason,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="RID" keyProperty="rid" parameterType="com.yc137.domain.ContractReject" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into contract_reject
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="contractNumber != null and contractNumber != ''">
+        CONTRACT_NUMBER,
+      </if>
+      <if test="reason != null and reason != ''">
+        REASON,
+      </if>
+      <if test="time != null">
+        `TIME`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="contractNumber != null and contractNumber != ''">
+        #{contractNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null and reason != ''">
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yc137.domain.ContractReject">
+    <!--@mbg.generated-->
+    update contract_reject
+    <set>
+      <if test="contractNumber != null and contractNumber != ''">
+        CONTRACT_NUMBER = #{contractNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null and reason != ''">
+        REASON = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        `TIME` = #{time,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where RID = #{rid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yc137.domain.ContractReject">
+    <!--@mbg.generated-->
+    update contract_reject
+    set CONTRACT_NUMBER = #{contractNumber,jdbcType=VARCHAR},
+      REASON = #{reason,jdbcType=VARCHAR},
+      `TIME` = #{time,jdbcType=TIMESTAMP}
+    where RID = #{rid,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectNumber" resultMap="BaseResultMap">
+    select * from contract_reject where CONTRACT_NUMBER=#{id}
+  </select>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select * from contract_reject left join contract on contract_reject.CONTRACT_NUMBER=contract.number
+    </select>
+</mapper>

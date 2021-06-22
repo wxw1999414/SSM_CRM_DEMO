@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc137.mapper.CompanyCustomerMapper">
+  <resultMap id="BaseResultMap" type="com.yc137.domain.CompanyCustomer">
+    <!--@mbg.generated-->
+    <!--@Table company_customer-->
+    <id column="RID" jdbcType="INTEGER" property="rid" />
+    <result column="CUSTOMER_NAME" jdbcType="VARCHAR" property="customerName" />
+    <result column="CUSTOMER_TYPE" jdbcType="VARCHAR" property="customerType" />
+    <result column="LEGAL_PERSON" jdbcType="VARCHAR" property="legalPerson" />
+    <result column="TEL" jdbcType="VARCHAR" property="tel" />
+    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+    <result column="ADDRESS" jdbcType="VARCHAR" property="address" />
+    <result column="FOLLOW_PERSON" jdbcType="INTEGER" property="followPerson" />
+    <result column="REMARKS" jdbcType="VARCHAR" property="remarks" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    RID, CUSTOMER_NAME, CUSTOMER_TYPE, LEGAL_PERSON, TEL, EMAIL, ADDRESS, FOLLOW_PERSON, 
+    REMARKS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from company_customer
+    where RID = #{rid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from company_customer
+    where RID = #{rid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="RID" keyProperty="rid" parameterType="com.yc137.domain.CompanyCustomer" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into company_customer (CUSTOMER_NAME, CUSTOMER_TYPE, LEGAL_PERSON, 
+      TEL, EMAIL, ADDRESS, 
+      FOLLOW_PERSON, REMARKS)
+    values (#{customerName,jdbcType=VARCHAR}, #{customerType,jdbcType=VARCHAR}, #{legalPerson,jdbcType=VARCHAR}, 
+      #{tel,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{followPerson,jdbcType=INTEGER}, #{remarks,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="RID" keyProperty="rid" parameterType="com.yc137.domain.CompanyCustomer" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into company_customer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="customerName != null and customerName != ''">
+        CUSTOMER_NAME,
+      </if>
+      <if test="customerType != null and customerType != ''">
+        CUSTOMER_TYPE,
+      </if>
+      <if test="legalPerson != null and legalPerson != ''">
+        LEGAL_PERSON,
+      </if>
+      <if test="tel != null and tel != ''">
+        TEL,
+      </if>
+      <if test="email != null and email != ''">
+        EMAIL,
+      </if>
+      <if test="address != null and address != ''">
+        ADDRESS,
+      </if>
+      <if test="followPerson != null">
+        FOLLOW_PERSON,
+      </if>
+      <if test="remarks != null and remarks != ''">
+        REMARKS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="customerName != null and customerName != ''">
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerType != null and customerType != ''">
+        #{customerType,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPerson != null and legalPerson != ''">
+        #{legalPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null and tel != ''">
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null and email != ''">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null and address != ''">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="followPerson != null">
+        #{followPerson,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null and remarks != ''">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yc137.domain.CompanyCustomer">
+    <!--@mbg.generated-->
+    update company_customer
+    <set>
+      <if test="customerName != null and customerName != ''">
+        CUSTOMER_NAME = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerType != null and customerType != ''">
+        CUSTOMER_TYPE = #{customerType,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPerson != null and legalPerson != ''">
+        LEGAL_PERSON = #{legalPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null and tel != ''">
+        TEL = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null and email != ''">
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null and address != ''">
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="followPerson != null">
+        FOLLOW_PERSON = #{followPerson,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null and remarks != ''">
+        REMARKS = #{remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where RID = #{rid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yc137.domain.CompanyCustomer">
+    <!--@mbg.generated-->
+    update company_customer
+    set CUSTOMER_NAME = #{customerName,jdbcType=VARCHAR},
+      CUSTOMER_TYPE = #{customerType,jdbcType=VARCHAR},
+      LEGAL_PERSON = #{legalPerson,jdbcType=VARCHAR},
+      TEL = #{tel,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      FOLLOW_PERSON = #{followPerson,jdbcType=INTEGER},
+      REMARKS = #{remarks,jdbcType=VARCHAR}
+    where RID = #{rid,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectAll" resultType="java.util.Map">
+    select * from company_customer left join t_user on company_customer.FOLLOW_PERSON=t_user.RID
+
+  </select>
+</mapper>

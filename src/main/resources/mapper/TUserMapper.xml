@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc137.mapper.TUserMapper">
+  <resultMap id="BaseResultMap" type="com.yc137.domain.TUser">
+    <!--@mbg.generated-->
+    <!--@Table t_user-->
+    <id column="RID" jdbcType="INTEGER" property="rid" />
+    <result column="LOGIN_NAME" jdbcType="VARCHAR" property="loginName" />
+    <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+    <result column="U_NAME" jdbcType="VARCHAR" property="uName" />
+    <result column="U_POST" jdbcType="VARCHAR" property="uPost" />
+    <result column="U_PHONE" jdbcType="VARCHAR" property="uPhone" />
+    <result column="U_PARENT_ID" jdbcType="INTEGER" property="uParentId" />
+    <result column="U_STORAGE_ID" jdbcType="INTEGER" property="uStorageId" />
+    <result column="STATUS" jdbcType="INTEGER" property="status" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="U_REMARK" jdbcType="VARCHAR" property="uRemark" />
+    <collection property="tRole" ofType="com.yc137.domain.TRole">
+      <id column="ID" jdbcType="BIGINT" property="id" />
+      <result column="NAME" jdbcType="VARCHAR" property="name" />
+    </collection>
+
+
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    RID, LOGIN_NAME, `PASSWORD`, U_NAME, U_POST, U_PHONE, U_PARENT_ID, U_STORAGE_ID,
+    `STATUS`, CREATE_TIME, U_REMARK
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from t_user
+    where RID = #{rid,jdbcType=INTEGER}
+  </select>
+
+  <select id="findAll" resultMap="BaseResultMap">
+    select u1.RID, u1.LOGIN_NAME, u1.`PASSWORD`, u1.U_NAME, u1.U_POST, u1.U_PHONE,
+    <!--(select u2.U_NAME from t_user u2 where u2.RID=u1.U_PARENT_ID) as--> u1.U_PARENT_ID, u1.U_STORAGE_ID,
+    u1.`STATUS`, u1.CREATE_TIME, u1.U_REMARK
+    from t_user u1
+  </select>
+
+
+
+  <select id="selectByUser" resultMap="BaseResultMap" parameterType="com.yc137.domain.TUser">
+    select
+    u.*,r.ID,r.NAME
+    from t_user u , t_user_role ur ,t_role r
+    where u.RID=ur.USER_ID and
+    ur.ROLE_ID=r.ID and
+    u.LOGIN_NAME=#{loginName} and u.PASSWORD=#{password}
+
+  </select>
+
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from t_user
+    where RID = #{rid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="RID" keyProperty="rid" parameterType="com.yc137.domain.TUser" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into t_user (LOGIN_NAME, `PASSWORD`, U_NAME,
+    U_POST, U_PHONE, U_PARENT_ID,
+    U_STORAGE_ID, `STATUS`, CREATE_TIME,
+    U_REMARK)
+    values (#{loginName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{uName,jdbcType=VARCHAR},
+    #{uPost,jdbcType=VARCHAR}, #{uPhone,jdbcType=VARCHAR}, #{uParentId,jdbcType=INTEGER},
+    #{uStorageId,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
+    #{uRemark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="RID" keyProperty="rid" parameterType="com.yc137.domain.TUser" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into t_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="loginName != null">
+        LOGIN_NAME,
+      </if>
+      <if test="password != null">
+        `PASSWORD`,
+      </if>
+      <if test="uName != null">
+        U_NAME,
+      </if>
+      <if test="uPost != null">
+        U_POST,
+      </if>
+      <if test="uPhone != null">
+        U_PHONE,
+      </if>
+      <if test="uParentId != null">
+        U_PARENT_ID,
+      </if>
+      <if test="uStorageId != null">
+        U_STORAGE_ID,
+      </if>
+      <if test="status != null">
+        `STATUS`,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="uRemark != null">
+        U_REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="loginName != null">
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="uName != null">
+        #{uName,jdbcType=VARCHAR},
+      </if>
+      <if test="uPost != null">
+        #{uPost,jdbcType=VARCHAR},
+      </if>
+      <if test="uPhone != null">
+        #{uPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="uParentId != null">
+        #{uParentId,jdbcType=INTEGER},
+      </if>
+      <if test="uStorageId != null">
+        #{uStorageId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uRemark != null">
+        #{uRemark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yc137.domain.TUser">
+    <!--@mbg.generated-->
+    update t_user
+    <set>
+      <if test="loginName != null">
+        LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        `PASSWORD` = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="uName != null">
+        U_NAME = #{uName,jdbcType=VARCHAR},
+      </if>
+      <if test="uPost != null">
+        U_POST = #{uPost,jdbcType=VARCHAR},
+      </if>
+      <if test="uPhone != null">
+        U_PHONE = #{uPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="uParentId != null">
+        U_PARENT_ID = #{uParentId,jdbcType=INTEGER},
+      </if>
+      <if test="uStorageId != null">
+        U_STORAGE_ID = #{uStorageId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        `STATUS` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uRemark != null">
+        U_REMARK = #{uRemark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where RID = #{rid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yc137.domain.TUser">
+    <!--@mbg.generated-->
+    update t_user
+    set LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+    `PASSWORD` = #{password,jdbcType=VARCHAR},
+    U_NAME = #{uName,jdbcType=VARCHAR},
+    U_POST = #{uPost,jdbcType=VARCHAR},
+    U_PHONE = #{uPhone,jdbcType=VARCHAR},
+    U_PARENT_ID = #{uParentId,jdbcType=INTEGER},
+    U_STORAGE_ID = #{uStorageId,jdbcType=INTEGER},
+    `STATUS` = #{status,jdbcType=INTEGER},
+    CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+    U_REMARK = #{uRemark,jdbcType=VARCHAR}
+    where RID = #{rid,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectALL" resultType="java.util.Map">
+    SELECT * FROM t_user ;
+    </select>
+</mapper>

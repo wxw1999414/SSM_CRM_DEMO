@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc137.mapper.TAuthorityMapper">
+  <resultMap id="BaseResultMap" type="com.yc137.domain.TAuthority">
+    <!--@mbg.generated-->
+    <!--@Table t_authority-->
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="IS_MENU" jdbcType="INTEGER" property="isMenu" />
+    <result column="PARENT_ID" jdbcType="BIGINT" property="parentId" />
+    <result column="MENU_TYPE" jdbcType="SMALLINT" property="menuType" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="URL" jdbcType="VARCHAR" property="url" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    ID, IS_MENU, PARENT_ID, MENU_TYPE, `NAME`, URL
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from t_authority
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from t_authority
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yc137.domain.TAuthority">
+    <!--@mbg.generated-->
+    insert into t_authority (ID, IS_MENU, PARENT_ID, 
+      MENU_TYPE, `NAME`, URL
+      )
+    values (#{id,jdbcType=BIGINT}, #{isMenu,jdbcType=INTEGER}, #{parentId,jdbcType=BIGINT}, 
+      #{menuType,jdbcType=SMALLINT}, #{name,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yc137.domain.TAuthority">
+    <!--@mbg.generated-->
+    insert into t_authority
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="isMenu != null">
+        IS_MENU,
+      </if>
+      <if test="parentId != null">
+        PARENT_ID,
+      </if>
+      <if test="menuType != null">
+        MENU_TYPE,
+      </if>
+      <if test="name != null and name != ''">
+        `NAME`,
+      </if>
+      <if test="url != null and url != ''">
+        URL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="isMenu != null">
+        #{isMenu,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="menuType != null">
+        #{menuType,jdbcType=SMALLINT},
+      </if>
+      <if test="name != null and name != ''">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null and url != ''">
+        #{url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yc137.domain.TAuthority">
+    <!--@mbg.generated-->
+    update t_authority
+    <set>
+      <if test="isMenu != null">
+        IS_MENU = #{isMenu,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null">
+        PARENT_ID = #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="menuType != null">
+        MENU_TYPE = #{menuType,jdbcType=SMALLINT},
+      </if>
+      <if test="name != null and name != ''">
+        `NAME` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null and url != ''">
+        URL = #{url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yc137.domain.TAuthority">
+    <!--@mbg.generated-->
+    update t_authority
+    set IS_MENU = #{isMenu,jdbcType=INTEGER},
+      PARENT_ID = #{parentId,jdbcType=BIGINT},
+      MENU_TYPE = #{menuType,jdbcType=SMALLINT},
+      `NAME` = #{name,jdbcType=VARCHAR},
+      URL = #{url,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectConditionById" resultMap="BaseResultMap">
+    select * from t_authority where ID like concat(#{id},'%')
+    </select>
+</mapper>

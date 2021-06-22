@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc137.mapper.FollowsRecordMapper">
+  <resultMap id="BaseResultMap" type="com.yc137.domain.FollowsRecord">
+    <!--@mbg.generated-->
+    <!--@Table follows_record-->
+    <id column="RID" jdbcType="INTEGER" property="rid" />
+    <result column="CUSTOMER_ID" jdbcType="INTEGER" property="customerId" />
+    <result column="RECORD_CONTENT" jdbcType="VARCHAR" property="recordContent" />
+    <result column="RECORD_TIME" jdbcType="TIMESTAMP" property="recordTime" />
+    <result column="RECORD_ID" jdbcType="INTEGER" property="recordId" />
+    <result column="NEXT_FOLLOW" jdbcType="DATE" property="nextFollow" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    RID, CUSTOMER_ID, RECORD_CONTENT, RECORD_TIME, RECORD_ID, NEXT_FOLLOW
+  </sql>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from follows_record
+    where RID = #{rid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="RID" keyProperty="rid" parameterType="com.yc137.domain.FollowsRecord" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into follows_record (CUSTOMER_ID, RECORD_CONTENT, RECORD_TIME, 
+      RECORD_ID, NEXT_FOLLOW)
+    values (#{customerId,jdbcType=INTEGER}, #{recordContent,jdbcType=VARCHAR}, #{recordTime,jdbcType=TIMESTAMP}, 
+      #{recordId,jdbcType=INTEGER}, #{nextFollow,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" keyColumn="RID" keyProperty="rid" parameterType="com.yc137.domain.FollowsRecord" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into follows_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="customerId != null">
+        CUSTOMER_ID,
+      </if>
+      <if test="recordContent != null and recordContent != ''">
+        RECORD_CONTENT,
+      </if>
+      <if test="recordTime != null">
+        RECORD_TIME,
+      </if>
+      <if test="recordId != null">
+        RECORD_ID,
+      </if>
+      <if test="nextFollow != null">
+        NEXT_FOLLOW,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="customerId != null">
+        #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="recordContent != null and recordContent != ''">
+        #{recordContent,jdbcType=VARCHAR},
+      </if>
+      <if test="recordTime != null">
+        #{recordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recordId != null">
+        #{recordId,jdbcType=INTEGER},
+      </if>
+      <if test="nextFollow != null">
+        #{nextFollow,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yc137.domain.FollowsRecord">
+    <!--@mbg.generated-->
+    update follows_record
+    <set>
+      <if test="customerId != null">
+        CUSTOMER_ID = #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="recordContent != null and recordContent != ''">
+        RECORD_CONTENT = #{recordContent,jdbcType=VARCHAR},
+      </if>
+      <if test="recordTime != null">
+        RECORD_TIME = #{recordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recordId != null">
+        RECORD_ID = #{recordId,jdbcType=INTEGER},
+      </if>
+      <if test="nextFollow != null">
+        NEXT_FOLLOW = #{nextFollow,jdbcType=DATE},
+      </if>
+    </set>
+    where RID = #{rid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yc137.domain.FollowsRecord">
+    <!--@mbg.generated-->
+    update follows_record
+    set CUSTOMER_ID = #{customerId,jdbcType=INTEGER},
+      RECORD_CONTENT = #{recordContent,jdbcType=VARCHAR},
+      RECORD_TIME = #{recordTime,jdbcType=TIMESTAMP},
+      RECORD_ID = #{recordId,jdbcType=INTEGER},
+      NEXT_FOLLOW = #{nextFollow,jdbcType=DATE}
+    where RID = #{rid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultType="java.util.Map">
+    select *from follows_record left join  t_user on follows_record.RECORD_ID=t_user.rid left join potential_customer on follows_record.CUSTOMER_ID=potential_customer.rid where follows_record.CUSTOMER_ID=#{rid}
+  </select>
+</mapper>

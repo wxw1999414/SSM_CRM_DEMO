@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc137.mapper.OrderProcessMapper">
+  <resultMap id="BaseResultMap" type="com.yc137.domain.OrderProcess">
+    <!--@mbg.generated-->
+    <!--@Table order_process-->
+    <id column="RID" jdbcType="INTEGER" property="rid" />
+    <result column="CUSTOMER_ID" jdbcType="INTEGER" property="customerId" />
+    <result column="GOODS" jdbcType="INTEGER" property="goods" />
+    <result column="ORDER_TIME" jdbcType="TIMESTAMP" property="orderTime" />
+    <result column="ORDER_GOODS_TIME" jdbcType="TIMESTAMP" property="orderGoodsTime" />
+    <result column="CUSTOMER_GET_TIME" jdbcType="TIMESTAMP" property="customerGetTime" />
+    <result column="STATE" jdbcType="VARCHAR" property="state" />
+    <result column="REMARKS" jdbcType="VARCHAR" property="remarks" />
+    <result column="ORDER_MONEY" jdbcType="FLOAT" property="orderMoney" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    RID, CUSTOMER_ID, GOODS, ORDER_TIME, ORDER_GOODS_TIME, CUSTOMER_GET_TIME, `STATE`, 
+    REMARKS, ORDER_MONEY
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from order_process
+    where RID = #{rid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from order_process
+    where RID = #{rid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="RID" keyProperty="rid" parameterType="com.yc137.domain.OrderProcess" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into order_process (CUSTOMER_ID, GOODS, ORDER_TIME, 
+      ORDER_GOODS_TIME, CUSTOMER_GET_TIME, `STATE`, 
+      REMARKS, ORDER_MONEY)
+    values (#{customerId,jdbcType=INTEGER}, #{goods,jdbcType=INTEGER}, #{orderTime,jdbcType=TIMESTAMP}, 
+      #{orderGoodsTime,jdbcType=TIMESTAMP}, #{customerGetTime,jdbcType=TIMESTAMP}, #{state,jdbcType=VARCHAR}, 
+      #{remarks,jdbcType=VARCHAR}, #{orderMoney,jdbcType=FLOAT})
+  </insert>
+  <insert id="insertSelective" keyColumn="RID" keyProperty="rid" parameterType="com.yc137.domain.OrderProcess" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into order_process
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="customerId != null">
+        CUSTOMER_ID,
+      </if>
+      <if test="goods != null">
+        GOODS,
+      </if>
+      <if test="orderTime != null">
+        ORDER_TIME,
+      </if>
+      <if test="orderGoodsTime != null">
+        ORDER_GOODS_TIME,
+      </if>
+      <if test="customerGetTime != null">
+        CUSTOMER_GET_TIME,
+      </if>
+      <if test="state != null and state != ''">
+        `STATE`,
+      </if>
+      <if test="remarks != null and remarks != ''">
+        REMARKS,
+      </if>
+      <if test="orderMoney != null">
+        ORDER_MONEY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="customerId != null">
+        #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="goods != null">
+        #{goods,jdbcType=INTEGER},
+      </if>
+      <if test="orderTime != null">
+        #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderGoodsTime != null">
+        #{orderGoodsTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="customerGetTime != null">
+        #{customerGetTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null and state != ''">
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null and remarks != ''">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="orderMoney != null">
+        #{orderMoney,jdbcType=FLOAT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yc137.domain.OrderProcess">
+    <!--@mbg.generated-->
+    update order_process
+    <set>
+      <if test="customerId != null">
+        CUSTOMER_ID = #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="goods != null">
+        GOODS = #{goods,jdbcType=INTEGER},
+      </if>
+      <if test="orderTime != null">
+        ORDER_TIME = #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderGoodsTime != null">
+        ORDER_GOODS_TIME = #{orderGoodsTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="customerGetTime != null">
+        CUSTOMER_GET_TIME = #{customerGetTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null and state != ''">
+        `STATE` = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null and remarks != ''">
+        REMARKS = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="orderMoney != null">
+        ORDER_MONEY = #{orderMoney,jdbcType=FLOAT},
+      </if>
+    </set>
+    where RID = #{rid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yc137.domain.OrderProcess">
+    <!--@mbg.generated-->
+    update order_process
+    set CUSTOMER_ID = #{customerId,jdbcType=INTEGER},
+      GOODS = #{goods,jdbcType=INTEGER},
+      ORDER_TIME = #{orderTime,jdbcType=TIMESTAMP},
+      ORDER_GOODS_TIME = #{orderGoodsTime,jdbcType=TIMESTAMP},
+      CUSTOMER_GET_TIME = #{customerGetTime,jdbcType=TIMESTAMP},
+      `STATE` = #{state,jdbcType=VARCHAR},
+      REMARKS = #{remarks,jdbcType=VARCHAR},
+      ORDER_MONEY = #{orderMoney,jdbcType=FLOAT}
+    where RID = #{rid,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectAll" resultType="java.util.Map">
+    select order_process.rid as orderId ,company_customer.rid,company_customer.CUSTOMER_NAME,GOODS.RID as goodId,GOODS.GOODS_NAME,order_process.ORDER_TIME,order_process.ORDER_GOODS_TIME,order_process.CUSTOMER_GET_TIME,order_process.STATE,order_process.REMARKS,order_process.ORDER_MONEY from
+            order_process LEFT JOIN company_customer on order_process.CUSTOMER_ID=company_customer.RID
+                          LEFT JOIN goods on order_process.GOODS=goods.RID
+    <if  test="rid!= '' and rid!= null">
+      and order_process.rid=#{rid}
+    </if>
+
+
+  </select>
+
+  <select id="selectById" resultType="java.util.Map">
+    select order_process.rid as orderId ,company_customer.rid,company_customer.CUSTOMER_NAME,GOODS.RID as goodId,GOODS.GOODS_NAME,order_process.ORDER_TIME,order_process.ORDER_GOODS_TIME,order_process.CUSTOMER_GET_TIME,order_process.STATE,order_process.REMARKS,order_process.ORDER_MONEY from
+            order_process LEFT JOIN company_customer on order_process.CUSTOMER_ID=company_customer.RID  LEFT JOIN goods on order_process.GOODS=goods.RID where order_process.rid=#{id}
+  </select>
+
+  <update id="updateOrder">
+    update order_process set ORDER_GOODS_TIME=#{param1},CUSTOMER_GET_TIME=#{param2},STATE=#{param3},REMARKS=#{param4} where RID=#{param5}
+  </update>
+
+  <select id="selectByName" resultType="java.util.Map">
+    select order_process.rid as orderId ,company_customer.rid,company_customer.CUSTOMER_NAME,GOODS.RID as goodId,GOODS.GOODS_NAME,order_process.ORDER_TIME,order_process.ORDER_GOODS_TIME,
+           order_process.CUSTOMER_GET_TIME,order_process.STATE,order_process.REMARKS,order_process.ORDER_MONEY from order_process
+                 LEFT JOIN company_customer on order_process.CUSTOMER_ID=company_customer.RID  LEFT JOIN goods on order_process.GOODS=goods.RID where company_customer.CUSTOMER_NAME=#{customerName}
+  </select>
+</mapper>

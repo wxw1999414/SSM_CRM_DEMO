@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc137.mapper.GoodsMapper">
+  <resultMap id="BaseResultMap" type="com.yc137.domain.Goods">
+    <!--@mbg.generated-->
+    <!--@Table goods-->
+    <id column="RID" jdbcType="INTEGER" property="rid" />
+    <result column="GOODS_NAME" jdbcType="VARCHAR" property="goodsName" />
+    <result column="PRICE" jdbcType="FLOAT" property="price" />
+    <result column="REMARKS" jdbcType="VARCHAR" property="remarks" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    RID, GOODS_NAME, PRICE, REMARKS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from goods
+    where RID = #{rid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from goods
+    where RID = #{rid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="RID" keyProperty="rid" parameterType="com.yc137.domain.Goods" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into goods (GOODS_NAME, PRICE, REMARKS
+      )
+    values (#{goodsName,jdbcType=VARCHAR}, #{price,jdbcType=FLOAT}, #{remarks,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="RID" keyProperty="rid" parameterType="com.yc137.domain.Goods" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into goods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="goodsName != null and goodsName != ''">
+        GOODS_NAME,
+      </if>
+      <if test="price != null">
+        PRICE,
+      </if>
+      <if test="remarks != null and remarks != ''">
+        REMARKS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="goodsName != null and goodsName != ''">
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=FLOAT},
+      </if>
+      <if test="remarks != null and remarks != ''">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yc137.domain.Goods">
+    <!--@mbg.generated-->
+    update goods
+    <set>
+      <if test="goodsName != null and goodsName != ''">
+        GOODS_NAME = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        PRICE = #{price,jdbcType=FLOAT},
+      </if>
+      <if test="remarks != null and remarks != ''">
+        REMARKS = #{remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where RID = #{rid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yc137.domain.Goods">
+    <!--@mbg.generated-->
+    update goods
+    set GOODS_NAME = #{goodsName,jdbcType=VARCHAR},
+      PRICE = #{price,jdbcType=FLOAT},
+      REMARKS = #{remarks,jdbcType=VARCHAR}
+    where RID = #{rid,jdbcType=INTEGER}
+  </update>
+
+  <select id="goods" resultMap="BaseResultMap">
+    select * from goods
+  </select>
+
+  <select id="selectByKey" resultMap="BaseResultMap">
+    select * from goods where GOODS_NAME=#{goodsName}
+  </select>
+</mapper>

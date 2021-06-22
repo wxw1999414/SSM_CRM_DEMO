@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc137.mapper.DictionaryGroupMapper">
+  <resultMap id="BaseResultMap" type="com.yc137.domain.DictionaryGroup">
+    <!--@mbg.generated-->
+    <!--@Table dictionary_group-->
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="GROUP_NAME" jdbcType="VARCHAR" property="groupName" />
+    <result column="GROUP_LABEL" jdbcType="VARCHAR" property="groupLabel" />
+    <result column="ENABLE" jdbcType="INTEGER" property="enable" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+
+    ID, GROUP_NAME, GROUP_LABEL, `ENABLE`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from dictionary_group
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from dictionary_group
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.yc137.domain.DictionaryGroup" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into dictionary_group (GROUP_NAME, GROUP_LABEL, `ENABLE`
+      )
+    values (#{groupName,jdbcType=VARCHAR}, #{groupLabel,jdbcType=VARCHAR}, #{enable,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="com.yc137.domain.DictionaryGroup" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into dictionary_group
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="groupName != null">
+        GROUP_NAME,
+      </if>
+      <if test="groupLabel != null">
+        GROUP_LABEL,
+      </if>
+      <if test="enable != null">
+        `ENABLE`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="groupName != null">
+        #{groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="groupLabel != null">
+        #{groupLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="enable != null">
+        #{enable,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yc137.domain.DictionaryGroup">
+    <!--@mbg.generated-->
+    update dictionary_group
+    <set>
+      <if test="groupName != null">
+        GROUP_NAME = #{groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="groupLabel != null">
+        GROUP_LABEL = #{groupLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="enable != null">
+        `ENABLE` = #{enable,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yc137.domain.DictionaryGroup">
+    <!--@mbg.generated-->
+    update dictionary_group
+    set GROUP_NAME = #{groupName,jdbcType=VARCHAR},
+      GROUP_LABEL = #{groupLabel,jdbcType=VARCHAR},
+      `ENABLE` = #{enable,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
